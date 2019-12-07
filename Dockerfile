@@ -1,5 +1,7 @@
 FROM debian:jessie
 
+ENV GUILE_AUTO_COMPILE 0
+
 WORKDIR /tmp
 
 RUN apt-get update -y \
@@ -19,3 +21,8 @@ RUN tar xfzv /tmp/mdk-1.2.10.tar.gz \
  && cd mdk-1.2.10 \
  && ./configure --disable-dependency-tracking \
  && make && make install
+
+WORKDIR /home
+
+#CMD mixvm
+ENTRYPOINT ["mixvm"]
